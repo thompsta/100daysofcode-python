@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import urllib.request
 
@@ -23,13 +23,8 @@ def time_between_shutdowns(loglines):
        Return this datetime.timedelta object.
     """
     L = [l for l in loglines if SHUTDOWN_EVENT in l]
-    diff = [convert_to_datetime(y) - convert_to_datetime(x) for x,y in zip(L,L[1:])]
-    #L=[]
-    #for line in loglines:
-    #    if SHUTDOWN_EVENT in line:
-    #        dt = convert_to_datetime(line)
-    #        L.append(dt)
-    #diff = [y - x for x,y in zip(L,L[1:])] 
+    diff = convert_to_datetime(L[-1]) - convert_to_datetime(L[0])
+
     return diff
 
 
