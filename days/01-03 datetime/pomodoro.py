@@ -19,11 +19,10 @@ for remaining in range(24, 0, -1):
         curr_time = datetime.now()
         display_time = time(hour=curr_time.hour,minute=curr_time.minute,second=curr_time.second)
         clock = time(minute=min_remain, second=remaining)
-        #replaces line
+        #replaces line instead of new line
         sys.stdout.write("\r")
         sys.stdout.write("{} time remaining...".format(clock))
         sys.stdout.write("Current time: {}".format(display_time))
-        #instead of new line, flushes output
         sys.stdout.flush()
         tm.sleep(1)
 
