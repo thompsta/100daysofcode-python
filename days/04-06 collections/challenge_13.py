@@ -16,6 +16,7 @@ def get_movies_by_director(data):
     with open(data, newline='',encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            #can also use try: ... and except ValueError: continue to ignore rows with bad data
             if int(row['title_year'].replace('','0')) >= MIN_MOVIES:
                 directors[row['director_name']].append(
                     Movie(row['movie_title'], row['title_year'], row['imdb_score'])
@@ -51,6 +52,12 @@ def print_results(directors):
         counter += 1
         if counter == 21:
             break
+    
+    #can also use Counter to get top 20 directors
+    #cnt = Counter()
+    #for director, movies in directors.items():
+        #cnt[director] += len(movies)
+    #cnt.most_common(20)
     return 
 
 
